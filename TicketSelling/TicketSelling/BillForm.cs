@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TicketSelling
 {
-    public partial class Form1 : Form
+    public partial class BillForm : Form
     {
-        public Form1()
+        public BillForm()
         {
             InitializeComponent();
         }
