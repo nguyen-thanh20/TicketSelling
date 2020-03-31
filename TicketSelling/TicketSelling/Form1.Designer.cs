@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.LoginPn = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.LoginBt = new System.Windows.Forms.Button();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
@@ -40,6 +42,8 @@
             // 
             // LoginPn
             // 
+            this.LoginPn.Controls.Add(this.label2);
+            this.LoginPn.Controls.Add(this.label1);
             this.LoginPn.Controls.Add(this.LoginBt);
             this.LoginPn.Controls.Add(this.PasswordLabel);
             this.LoginPn.Controls.Add(this.UsernameLabel);
@@ -51,13 +55,32 @@
             this.LoginPn.Size = new System.Drawing.Size(298, 440);
             this.LoginPn.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(164, 249);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Sign up now!";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 249);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Don\'t have account?";
+            // 
             // LoginBt
             // 
-            this.LoginBt.Location = new System.Drawing.Point(85, 212);
+            this.LoginBt.Location = new System.Drawing.Point(99, 192);
             this.LoginBt.Name = "LoginBt";
-            this.LoginBt.Size = new System.Drawing.Size(131, 37);
+            this.LoginBt.Size = new System.Drawing.Size(104, 37);
             this.LoginBt.TabIndex = 5;
-            this.LoginBt.Text = "Login";
+            this.LoginBt.Text = "Sign in";
             this.LoginBt.UseVisualStyleBackColor = true;
             this.LoginBt.Click += new System.EventHandler(this.LoginBt_Click);
             // 
@@ -128,6 +151,8 @@
         private System.Windows.Forms.TextBox PasswordTextbox;
         private System.Windows.Forms.TextBox UsernameTextbox;
         private System.Windows.Forms.Label LoginLb;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

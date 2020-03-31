@@ -21,15 +21,15 @@ namespace TicketSelling
         {
             InitializeComponent();
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "dokuslaptop";
+            builder.DataSource = "DOKUSLAPTOP\\DOKUSQL";
             builder.UserID = "project";
             builder.Password = "123";
-            builder.InitialCatalog = "TestConnectSQL";
+            builder.InitialCatalog = "TicketSelling";
 
             sql = new SqlConnection(builder.ConnectionString);
 
             //SqlConnection sql = new SqlConnection(conString);
-            sql.Open();
+            //sql.Open();
 
         }
 
@@ -39,7 +39,8 @@ namespace TicketSelling
             string pw = PasswordTextbox.Text;
             sql.Open();
 
-            query = "SELECT Us,Pw FROM login WHERE Us = '"+us+"' AND Pw='"+pw+"';";
+            query = "SELECT Username,Pass_Account FROM ACCOUNT" +
+                " WHERE Username = '"+us+"' AND Pass_Account='"+pw+"';";
             cmd = new SqlCommand(query, sql);
             dataReader = cmd.ExecuteReader();
             if (!dataReader.Read())
@@ -53,22 +54,30 @@ namespace TicketSelling
             sql.Close();
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+            SignUpForm signup = new SignUpForm(sql);
+            signup.Show();
+        }
+
         //  public string conString = "Data Source=DOKUSLAPTOP;Initial Catalog=TestConnectSQL;Integrated Security=True";
         private void Form1_Load(object sender, EventArgs e)
         {
-            query = "SELECT * FROM login";
+            //sql.Open();
+            //query = "SELECT * FROM ACCOUNT";
 
-            cmd = new SqlCommand(query, sql);
+            //cmd = new SqlCommand(query, sql);
 
-            dataReader = cmd.ExecuteReader();
+            //dataReader = cmd.ExecuteReader();
 
-            while (dataReader.Read())
-            {
-                Output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1)+"\n";
-            }
+            //while (dataReader.Read())
+            //{
+               
+            //    Output +=  dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
+            //}
 
-            MessageBox.Show(Output);
-            sql.Close();
+            //MessageBox.Show(Output);
+            //sql.Close();
         }
     }
 }
