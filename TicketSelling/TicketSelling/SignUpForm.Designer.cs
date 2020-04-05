@@ -30,6 +30,9 @@
         {
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkPwLb = new System.Windows.Forms.Label();
+            this.RoleListBox = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.ConfirmBt = new System.Windows.Forms.Button();
             this.DoBTb = new System.Windows.Forms.DateTimePicker();
             this.GenderListBox = new System.Windows.Forms.ComboBox();
@@ -42,7 +45,7 @@
             this.nametb = new System.Windows.Forms.TextBox();
             this.confirmpwlb = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.UsernameLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,9 +53,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.RoleListBox = new System.Windows.Forms.ComboBox();
-            this.checkPwLb = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +73,7 @@
             this.panel1.Controls.Add(this.nametb);
             this.panel1.Controls.Add(this.confirmpwlb);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.UsernameLabel);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
@@ -85,6 +85,37 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(763, 401);
             this.panel1.TabIndex = 0;
+            // 
+            // checkPwLb
+            // 
+            this.checkPwLb.AutoSize = true;
+            this.checkPwLb.ForeColor = System.Drawing.Color.Red;
+            this.checkPwLb.Location = new System.Drawing.Point(537, 225);
+            this.checkPwLb.Name = "checkPwLb";
+            this.checkPwLb.Size = new System.Drawing.Size(194, 17);
+            this.checkPwLb.TabIndex = 22;
+            this.checkPwLb.Text = "Wrong cormfirmed password!!";
+            this.checkPwLb.Visible = false;
+            // 
+            // RoleListBox
+            // 
+            this.RoleListBox.FormattingEnabled = true;
+            this.RoleListBox.Items.AddRange(new object[] {
+            "Manager",
+            "Member"});
+            this.RoleListBox.Location = new System.Drawing.Point(548, 58);
+            this.RoleListBox.Name = "RoleListBox";
+            this.RoleListBox.Size = new System.Drawing.Size(113, 24);
+            this.RoleListBox.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(394, 62);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(148, 17);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "You are registering as";
             // 
             // ConfirmBt
             // 
@@ -141,6 +172,7 @@
             this.UsTb.Name = "UsTb";
             this.UsTb.Size = new System.Drawing.Size(212, 22);
             this.UsTb.TabIndex = 14;
+            this.UsTb.TextChanged += new System.EventHandler(this.UsTb_TextChanged);
             // 
             // EmailTb
             // 
@@ -165,6 +197,7 @@
             this.PhoneTb.Name = "PhoneTb";
             this.PhoneTb.Size = new System.Drawing.Size(227, 22);
             this.PhoneTb.TabIndex = 11;
+            this.PhoneTb.TextChanged += new System.EventHandler(this.PhoneTb_TextChanged);
             // 
             // nametb
             // 
@@ -192,14 +225,14 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "Password";
             // 
-            // label8
+            // UsernameLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(394, 107);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 17);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Username";
+            this.UsernameLabel.AutoSize = true;
+            this.UsernameLabel.Location = new System.Drawing.Point(394, 107);
+            this.UsernameLabel.Name = "UsernameLabel";
+            this.UsernameLabel.Size = new System.Drawing.Size(73, 17);
+            this.UsernameLabel.TabIndex = 7;
+            this.UsernameLabel.Text = "Username";
             // 
             // label7
             // 
@@ -265,37 +298,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Sign Up";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(394, 62);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(148, 17);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "You are registering as";
-            // 
-            // RoleListBox
-            // 
-            this.RoleListBox.FormattingEnabled = true;
-            this.RoleListBox.Items.AddRange(new object[] {
-            "Manager",
-            "Member"});
-            this.RoleListBox.Location = new System.Drawing.Point(548, 58);
-            this.RoleListBox.Name = "RoleListBox";
-            this.RoleListBox.Size = new System.Drawing.Size(113, 24);
-            this.RoleListBox.TabIndex = 21;
-            // 
-            // checkPwLb
-            // 
-            this.checkPwLb.AutoSize = true;
-            this.checkPwLb.ForeColor = System.Drawing.Color.Red;
-            this.checkPwLb.Location = new System.Drawing.Point(537, 225);
-            this.checkPwLb.Name = "checkPwLb";
-            this.checkPwLb.Size = new System.Drawing.Size(194, 17);
-            this.checkPwLb.TabIndex = 22;
-            this.checkPwLb.Text = "Wrong cormfirmed password!!";
-            this.checkPwLb.Visible = false;
-            // 
             // SignUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -325,7 +327,7 @@
         private System.Windows.Forms.TextBox nametb;
         private System.Windows.Forms.Label confirmpwlb;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;

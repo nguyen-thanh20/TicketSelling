@@ -24,6 +24,7 @@ namespace TicketSelling
             InitializeComponent();
         }
 
+
         private void PwCfTb_TextChanged(object sender, EventArgs e)
         {
             if (PwTb.Text != PwCfTb.Text)
@@ -35,6 +36,16 @@ namespace TicketSelling
                 confirmpwlb.ForeColor = Color.Black;
                 checkPwLb.Visible = false;
             }
+        }
+
+        private void PhoneTb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UsTb_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,6 +60,16 @@ namespace TicketSelling
                 role = "MANAGER";
             }
 
+            query = String.Format("SELECT username FROM ACCOUNT WHERE username='{0}'",UsTb.Text.ToString());
+            cmd = new SqlCommand(query, sql);
+            dataReader = cmd.ExecuteReader();
+            while(dataReader.Read())
+            if (dataReader.GetValue(0) != null)
+            {
+                UsernameLabel.ForeColor = Color.Red;
+                    sql.Close();
+                return;
+            }
             query = String.Format("INSERT INTO {0} VALUES ('{1}','{2}','{3}','{4}','{5}','{6}'); ",
                 role,
                 nametb.Text,

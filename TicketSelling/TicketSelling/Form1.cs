@@ -63,21 +63,21 @@ namespace TicketSelling
         //  public string conString = "Data Source=DOKUSLAPTOP;Initial Catalog=TestConnectSQL;Integrated Security=True";
         private void Form1_Load(object sender, EventArgs e)
         {
-            //sql.Open();
-            //query = "SELECT * FROM ACCOUNT";
+            sql.Open();
+            query = "SELECT * FROM ACCOUNT";
 
-            //cmd = new SqlCommand(query, sql);
+            cmd = new SqlCommand(query, sql);
 
-            //dataReader = cmd.ExecuteReader();
+            dataReader = cmd.ExecuteReader();
 
-            //while (dataReader.Read())
-            //{
-               
-            //    Output +=  dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
-            //}
+            while (dataReader.Read())
+            {
 
-            //MessageBox.Show(Output);
-            //sql.Close();
+                Output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
+            }
+
+            MessageBox.Show(Output);
+            sql.Close();
         }
     }
 }
