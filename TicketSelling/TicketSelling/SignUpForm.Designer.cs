@@ -31,8 +31,6 @@
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkPwLb = new System.Windows.Forms.Label();
-            this.RoleListBox = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.ConfirmBt = new System.Windows.Forms.Button();
             this.DoBTb = new System.Windows.Forms.DateTimePicker();
             this.GenderListBox = new System.Windows.Forms.ComboBox();
@@ -42,25 +40,25 @@
             this.EmailTb = new System.Windows.Forms.TextBox();
             this.AddressTb = new System.Windows.Forms.TextBox();
             this.PhoneTb = new System.Windows.Forms.TextBox();
-            this.nametb = new System.Windows.Forms.TextBox();
+            this.LastNameTb = new System.Windows.Forms.TextBox();
+            this.FirstNameTb = new System.Windows.Forms.TextBox();
             this.confirmpwlb = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.UsernameLabel = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.PasswordLb = new System.Windows.Forms.Label();
+            this.UsernameLb = new System.Windows.Forms.Label();
+            this.DoBLb = new System.Windows.Forms.Label();
+            this.GenderLb = new System.Windows.Forms.Label();
+            this.EmailLb = new System.Windows.Forms.Label();
+            this.AddressLb = new System.Windows.Forms.Label();
+            this.LastNameLb = new System.Windows.Forms.Label();
+            this.PhoneLb = new System.Windows.Forms.Label();
+            this.FirstNameLb = new System.Windows.Forms.Label();
+            this.SignUpLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.checkPwLb);
-            this.panel1.Controls.Add(this.RoleListBox);
-            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.ConfirmBt);
             this.panel1.Controls.Add(this.DoBTb);
             this.panel1.Controls.Add(this.GenderListBox);
@@ -70,17 +68,19 @@
             this.panel1.Controls.Add(this.EmailTb);
             this.panel1.Controls.Add(this.AddressTb);
             this.panel1.Controls.Add(this.PhoneTb);
-            this.panel1.Controls.Add(this.nametb);
+            this.panel1.Controls.Add(this.LastNameTb);
+            this.panel1.Controls.Add(this.FirstNameTb);
             this.panel1.Controls.Add(this.confirmpwlb);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.UsernameLabel);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.PasswordLb);
+            this.panel1.Controls.Add(this.UsernameLb);
+            this.panel1.Controls.Add(this.DoBLb);
+            this.panel1.Controls.Add(this.GenderLb);
+            this.panel1.Controls.Add(this.EmailLb);
+            this.panel1.Controls.Add(this.AddressLb);
+            this.panel1.Controls.Add(this.LastNameLb);
+            this.panel1.Controls.Add(this.PhoneLb);
+            this.panel1.Controls.Add(this.FirstNameLb);
+            this.panel1.Controls.Add(this.SignUpLabel);
             this.panel1.Location = new System.Drawing.Point(12, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(763, 401);
@@ -97,26 +97,6 @@
             this.checkPwLb.Text = "Wrong cormfirmed password!!";
             this.checkPwLb.Visible = false;
             // 
-            // RoleListBox
-            // 
-            this.RoleListBox.FormattingEnabled = true;
-            this.RoleListBox.Items.AddRange(new object[] {
-            "Manager",
-            "Member"});
-            this.RoleListBox.Location = new System.Drawing.Point(548, 58);
-            this.RoleListBox.Name = "RoleListBox";
-            this.RoleListBox.Size = new System.Drawing.Size(113, 24);
-            this.RoleListBox.TabIndex = 21;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(394, 62);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(148, 17);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "You are registering as";
-            // 
             // ConfirmBt
             // 
             this.ConfirmBt.Location = new System.Drawing.Point(268, 344);
@@ -125,7 +105,7 @@
             this.ConfirmBt.TabIndex = 19;
             this.ConfirmBt.Text = "Confirm";
             this.ConfirmBt.UseVisualStyleBackColor = true;
-            this.ConfirmBt.Click += new System.EventHandler(this.button1_Click);
+            this.ConfirmBt.Click += new System.EventHandler(this.Confirm_click);
             // 
             // DoBTb
             // 
@@ -172,7 +152,6 @@
             this.UsTb.Name = "UsTb";
             this.UsTb.Size = new System.Drawing.Size(212, 22);
             this.UsTb.TabIndex = 14;
-            this.UsTb.TextChanged += new System.EventHandler(this.UsTb_TextChanged);
             // 
             // EmailTb
             // 
@@ -197,15 +176,22 @@
             this.PhoneTb.Name = "PhoneTb";
             this.PhoneTb.Size = new System.Drawing.Size(227, 22);
             this.PhoneTb.TabIndex = 11;
-            this.PhoneTb.TextChanged += new System.EventHandler(this.PhoneTb_TextChanged);
             // 
-            // nametb
+            // LastNameTb
             // 
-            this.nametb.Location = new System.Drawing.Point(123, 60);
-            this.nametb.MaxLength = 20;
-            this.nametb.Name = "nametb";
-            this.nametb.Size = new System.Drawing.Size(227, 22);
-            this.nametb.TabIndex = 10;
+            this.LastNameTb.Location = new System.Drawing.Point(533, 60);
+            this.LastNameTb.MaxLength = 20;
+            this.LastNameTb.Name = "LastNameTb";
+            this.LastNameTb.Size = new System.Drawing.Size(212, 22);
+            this.LastNameTb.TabIndex = 10;
+            // 
+            // FirstNameTb
+            // 
+            this.FirstNameTb.Location = new System.Drawing.Point(123, 60);
+            this.FirstNameTb.MaxLength = 20;
+            this.FirstNameTb.Name = "FirstNameTb";
+            this.FirstNameTb.Size = new System.Drawing.Size(227, 22);
+            this.FirstNameTb.TabIndex = 10;
             // 
             // confirmpwlb
             // 
@@ -216,87 +202,96 @@
             this.confirmpwlb.TabIndex = 9;
             this.confirmpwlb.Text = "Comfirm password";
             // 
-            // label9
+            // PasswordLb
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(394, 155);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Password";
+            this.PasswordLb.AutoSize = true;
+            this.PasswordLb.Location = new System.Drawing.Point(394, 155);
+            this.PasswordLb.Name = "PasswordLb";
+            this.PasswordLb.Size = new System.Drawing.Size(69, 17);
+            this.PasswordLb.TabIndex = 8;
+            this.PasswordLb.Text = "Password";
             // 
-            // UsernameLabel
+            // UsernameLb
             // 
-            this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Location = new System.Drawing.Point(394, 107);
-            this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(73, 17);
-            this.UsernameLabel.TabIndex = 7;
-            this.UsernameLabel.Text = "Username";
+            this.UsernameLb.AutoSize = true;
+            this.UsernameLb.Location = new System.Drawing.Point(394, 107);
+            this.UsernameLb.Name = "UsernameLb";
+            this.UsernameLb.Size = new System.Drawing.Size(73, 17);
+            this.UsernameLb.TabIndex = 7;
+            this.UsernameLb.Text = "Username";
             // 
-            // label7
+            // DoBLb
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 280);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 17);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Date of birth";
+            this.DoBLb.AutoSize = true;
+            this.DoBLb.Location = new System.Drawing.Point(28, 280);
+            this.DoBLb.Name = "DoBLb";
+            this.DoBLb.Size = new System.Drawing.Size(86, 17);
+            this.DoBLb.TabIndex = 6;
+            this.DoBLb.Text = "Date of birth";
             // 
-            // label6
+            // GenderLb
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 235);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Gender";
+            this.GenderLb.AutoSize = true;
+            this.GenderLb.Location = new System.Drawing.Point(28, 235);
+            this.GenderLb.Name = "GenderLb";
+            this.GenderLb.Size = new System.Drawing.Size(56, 17);
+            this.GenderLb.TabIndex = 5;
+            this.GenderLb.Text = "Gender";
             // 
-            // label5
+            // EmailLb
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 193);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 17);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Email";
+            this.EmailLb.AutoSize = true;
+            this.EmailLb.Location = new System.Drawing.Point(28, 193);
+            this.EmailLb.Name = "EmailLb";
+            this.EmailLb.Size = new System.Drawing.Size(42, 17);
+            this.EmailLb.TabIndex = 4;
+            this.EmailLb.Text = "Email";
             // 
-            // label4
+            // AddressLb
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 150);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Address";
+            this.AddressLb.AutoSize = true;
+            this.AddressLb.Location = new System.Drawing.Point(28, 150);
+            this.AddressLb.Name = "AddressLb";
+            this.AddressLb.Size = new System.Drawing.Size(60, 17);
+            this.AddressLb.TabIndex = 3;
+            this.AddressLb.Text = "Address";
             // 
-            // label3
+            // LastNameLb
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 107);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Phone";
+            this.LastNameLb.AutoSize = true;
+            this.LastNameLb.Location = new System.Drawing.Point(394, 61);
+            this.LastNameLb.Name = "LastNameLb";
+            this.LastNameLb.Size = new System.Drawing.Size(74, 17);
+            this.LastNameLb.TabIndex = 1;
+            this.LastNameLb.Text = "Last name";
             // 
-            // label2
+            // PhoneLb
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Name";
+            this.PhoneLb.AutoSize = true;
+            this.PhoneLb.Location = new System.Drawing.Point(28, 107);
+            this.PhoneLb.Name = "PhoneLb";
+            this.PhoneLb.Size = new System.Drawing.Size(49, 17);
+            this.PhoneLb.TabIndex = 2;
+            this.PhoneLb.Text = "Phone";
             // 
-            // label1
+            // FirstNameLb
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Sign Up";
+            this.FirstNameLb.AutoSize = true;
+            this.FirstNameLb.Location = new System.Drawing.Point(28, 63);
+            this.FirstNameLb.Name = "FirstNameLb";
+            this.FirstNameLb.Size = new System.Drawing.Size(74, 17);
+            this.FirstNameLb.TabIndex = 1;
+            this.FirstNameLb.Text = "First name";
+            // 
+            // SignUpLabel
+            // 
+            this.SignUpLabel.AutoSize = true;
+            this.SignUpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SignUpLabel.Location = new System.Drawing.Point(22, 12);
+            this.SignUpLabel.Name = "SignUpLabel";
+            this.SignUpLabel.Size = new System.Drawing.Size(82, 25);
+            this.SignUpLabel.TabIndex = 0;
+            this.SignUpLabel.Text = "Sign Up";
             // 
             // SignUpForm
             // 
@@ -324,20 +319,20 @@
         private System.Windows.Forms.TextBox EmailTb;
         private System.Windows.Forms.TextBox AddressTb;
         private System.Windows.Forms.TextBox PhoneTb;
-        private System.Windows.Forms.TextBox nametb;
+        private System.Windows.Forms.TextBox FirstNameTb;
         private System.Windows.Forms.Label confirmpwlb;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label UsernameLabel;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label PasswordLb;
+        private System.Windows.Forms.Label UsernameLb;
+        private System.Windows.Forms.Label DoBLb;
+        private System.Windows.Forms.Label GenderLb;
+        private System.Windows.Forms.Label EmailLb;
+        private System.Windows.Forms.Label AddressLb;
+        private System.Windows.Forms.Label PhoneLb;
+        private System.Windows.Forms.Label FirstNameLb;
+        private System.Windows.Forms.Label SignUpLabel;
         private System.Windows.Forms.Button ConfirmBt;
-        private System.Windows.Forms.ComboBox RoleListBox;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label checkPwLb;
+        private System.Windows.Forms.TextBox LastNameTb;
+        private System.Windows.Forms.Label LastNameLb;
     }
 }

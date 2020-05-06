@@ -22,7 +22,7 @@ namespace TicketSelling
             InitializeComponent();
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = "DOKUSLAPTOP\\DOKUSQL";
-            builder.UserID = "project";
+            builder.UserID = "sa";
             builder.Password = "123";
             builder.InitialCatalog = "TicketSelling";
 
@@ -39,17 +39,27 @@ namespace TicketSelling
             string pw = PasswordTextbox.Text;
             sql.Open();
 
-            query = "SELECT Username,Pass_Account FROM ACCOUNT" +
+            query = "SELECT * FROM ACCOUNT" +
                 " WHERE Username = '"+us+"' AND Pass_Account='"+pw+"';";
             cmd = new SqlCommand(query, sql);
             dataReader = cmd.ExecuteReader();
             if (!dataReader.Read())
             {
-                MessageBox.Show("Wrong"); 
+                MessageBox.Show("Wrong Username or Password!"); 
             }
             else 
             {
-                MessageBox.Show("Welcome " + us);
+                string ID = (string)dataReader.GetValue(2);
+                sql.Close();
+                sql.Open();
+                query = string.Format("SELECT Last_name from USERS " +
+                    "WHERE ID_User = '{0}'",ID);
+                cmd = new SqlCommand(query, sql);
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    MessageBox.Show("Welcome " + dataReader.GetValue(0));
+                }
             }
             sql.Close();
         }
@@ -63,21 +73,21 @@ namespace TicketSelling
         //  public string conString = "Data Source=DOKUSLAPTOP;Initial Catalog=TestConnectSQL;Integrated Security=True";
         private void Form1_Load(object sender, EventArgs e)
         {
-            sql.Open();
-            query = "SELECT * FROM ACCOUNT";
+            //sql.Open();
+            //query = "SELECT * FROM ACCOUNT";
 
-            cmd = new SqlCommand(query, sql);
+            //cmd = new SqlCommand(query, sql);
 
-            dataReader = cmd.ExecuteReader();
+            //dataReader = cmd.ExecuteReader();
 
-            while (dataReader.Read())
-            {
+            //while (dataReader.Read())
+            //{
 
-                Output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
-            }
+            //    Output += dataReader.GetValue(0) + "-" + dataReader.GetValue(1) + "\n";
+            //}
 
-            MessageBox.Show(Output);
-            sql.Close();
+            //MessageBox.Show(Output);
+            //sql.Close();
         }
     }
 }
