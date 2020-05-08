@@ -11,13 +11,13 @@ using System.Data.SqlClient;
 
 namespace TicketSelling
 {
-    public partial class Form1 : Form
+    public partial class SignInForm : Form
     {
         public SqlConnection sql;
         SqlCommand cmd;
         SqlDataReader dataReader;
-        string query, Output = "";
-        public Form1()
+        string query, role;
+        public SignInForm()
         {
             InitializeComponent();
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -64,6 +64,7 @@ namespace TicketSelling
             {
                 string ID = (string)dataReader.GetValue(2);
                 sql.Close();
+                
                 sql.Open();
                 query = string.Format("SELECT Last_name from USERS " +
                     "WHERE ID_User = '{0}'",ID);
@@ -73,10 +74,35 @@ namespace TicketSelling
                 {
                     MessageBox.Show("Welcome " + dataReader.GetValue(0));
                 }
+                sql.Close();
+                role = getRole(ID);
+                if(role == "Driver")
+                {
+                    this.Hide();
+                    var driverForm = new DriverForm(sql, ID);
+                    driverForm.Show();
+                    driverForm.Closed += (s, arg) => this.Close();
+                }
             }
             sql.Close();
         }
 
+        private string getRole(string ID)
+        {
+            string role="";
+            sql.Open();
+            query = string.Format("SELECT Role_User " +
+                "FROM USERS " +
+                "WHERE ID_User = '{0}'",ID);
+            cmd = new SqlCommand(query, sql);
+            dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
+            {
+                role = (string)dataReader.GetValue(0);
+            }
+            sql.Close();
+            return role;
+        }
         private void label2_Click(object sender, EventArgs e)
         {
             SignUpForm signup = new SignUpForm(sql);
