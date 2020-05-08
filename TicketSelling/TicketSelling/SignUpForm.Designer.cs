@@ -176,6 +176,7 @@
             this.PhoneTb.Name = "PhoneTb";
             this.PhoneTb.Size = new System.Drawing.Size(227, 22);
             this.PhoneTb.TabIndex = 11;
+            this.PhoneTb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PhoneTb_KeyDown);
             // 
             // LastNameTb
             // 

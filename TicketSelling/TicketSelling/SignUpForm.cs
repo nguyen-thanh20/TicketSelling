@@ -104,6 +104,28 @@ namespace TicketSelling
                 return false;
             }
         }
+
+        private void PhoneTb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if(e.KeyCode != Keys.Back) {
+                        e.SuppressKeyPress = true;
+                    }
+                }
+            }
+        }
+        private string checkQuote(string str)
+        {
+            if (str.Contains("'"))
+            {
+                str = str.Insert(str.IndexOf("'"), "'");
+            }
+            return str;
+        }
+
         private void Confirm_click(object sender, EventArgs e)
         {
             //Check blank name
@@ -111,9 +133,12 @@ namespace TicketSelling
             int index = 0;
             foreach (TextBox tb in tbList)
             {
-                if (IsBlank(tb, index))
+                if (IsBlank(tb, index++))
+                {
                     blank = true;
-                index++;
+                    break;
+                }
+                tb.Text = checkQuote(tb.Text);
             }
 
             if(GenderListBox.SelectedItem == null)
@@ -133,7 +158,7 @@ namespace TicketSelling
 
             //Check dumplicate username
             sql.Open();
-            query = string.Format("SELECT Username FROM ACCOUNT WHERE username='{0}'", UsTb.Text.ToString());
+            query = string.Format("SELECT Username FROM ACCOUNT WHERE username='{0}' COLLATE Latin1_General_CS_AS", UsTb.Text.ToString());
             cmd = new SqlCommand(query, sql);
             dataReader = cmd.ExecuteReader();
             while (dataReader.Read())

@@ -33,14 +33,27 @@ namespace TicketSelling
 
         }
 
+        private string checkQuote(string str)
+        {
+            if (str.Contains("'"))
+            {
+                str = str.Insert(str.IndexOf("'"), "'");
+            }
+            return str;
+        }
+
         private void LoginBt_Click(object sender, EventArgs e)
         {
-            string us = UsernameTextbox.Text;
-            string pw = PasswordTextbox.Text;
+            string us = checkQuote(UsernameTextbox.Text);
+            string pw = checkQuote(PasswordTextbox.Text);
+
+            //Check quote character
+            
+
             sql.Open();
 
             query = "SELECT * FROM ACCOUNT" +
-                " WHERE Username = '"+us+"' AND Pass_Account='"+pw+"';";
+                " WHERE Username = '"+us+ "' COLLATE Latin1_General_CS_AS AND Pass_Account='" + pw+ "' COLLATE Latin1_General_CS_AS";
             cmd = new SqlCommand(query, sql);
             dataReader = cmd.ExecuteReader();
             if (!dataReader.Read())
