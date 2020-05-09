@@ -127,13 +127,13 @@
             this.LoginLb.TabIndex = 0;
             this.LoginLb.Text = "Login";
             // 
-            // Form1
+            // SignInForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(448, 586);
             this.Controls.Add(this.LoginPn);
-            this.Name = "Form1";
+            this.Name = "SignInForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.LoginPn.ResumeLayout(false);

@@ -1,27 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TicketSelling
 {
     public partial class SignUpForm : Form
     {
-        SqlConnection sql;
-        SqlCommand cmd;
-        SqlDataReader dataReader;
-        string query, ID;
-        List<TextBox> tbList;
-        List<Label> lbList;
-        public SignUpForm(SqlConnection sql)
+        private SQL sql;
+        private List<TextBox> tbList;
+        private List<Label> lbList;
+        public SignUpForm(SQL sql)
         {
             this.sql = sql;
             InitializeComponent();
@@ -36,7 +27,7 @@ namespace TicketSelling
 
             lbList = new List<Label>()
             {
-                FirstNameLb, LastNameLb, AddressLb, PhoneLb, EmailLb, UsernameLb, PasswordLb, confirmpwlb    
+                FirstNameLb, LastNameLb, AddressLb, PhoneLb, EmailLb, UsernameLb, PasswordLb, confirmpwlb
             };
         }
         private void PwCfTb_TextChanged(object sender, EventArgs e)
@@ -45,7 +36,8 @@ namespace TicketSelling
             {
                 confirmpwlb.ForeColor = Color.Red;
                 checkPwLb.Visible = true;
-            }else
+            }
+            else
             {
                 confirmpwlb.ForeColor = Color.Black;
                 checkPwLb.Visible = false;
@@ -53,10 +45,15 @@ namespace TicketSelling
         }
         private Boolean IsBlank(TextBox t, int idx)
         {
-            if(string.IsNullOrWhiteSpace(t.Text))
+            if (string.IsNullOrWhiteSpace(t.Text))
             {
                 lbList[idx].ForeColor = Color.Red;
+                MissInfLb.Show();
                 return true;
+            }
+            else
+            {
+                lbList[idx].ForeColor = Color.Black;
             }
             return false;
         }
@@ -111,19 +108,12 @@ namespace TicketSelling
             {
                 if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
                 {
-                    if(e.KeyCode != Keys.Back) {
+                    if (e.KeyCode != Keys.Back)
+                    {
                         e.SuppressKeyPress = true;
                     }
                 }
             }
-        }
-        private string checkQuote(string str)
-        {
-            if (str.Contains("'"))
-            {
-                str = str.Insert(str.IndexOf("'"), "'");
-            }
-            return str;
         }
 
         private void Confirm_click(object sender, EventArgs e)
@@ -136,17 +126,17 @@ namespace TicketSelling
                 if (IsBlank(tb, index++))
                 {
                     blank = true;
-                    break;
                 }
-                tb.Text = checkQuote(tb.Text);
+                tb.Text = sql.checkQuote(tb.Text);
             }
 
-            if(GenderListBox.SelectedItem == null)
+            if (GenderListBox.SelectedItem == null)
             {
                 GenderLb.ForeColor = Color.Red;
                 blank = true;
             }
             if (blank) return;
+            else MissInfLb.Hide();
 
             if (!IsValidEmail(EmailTb.Text))
             {
@@ -154,24 +144,18 @@ namespace TicketSelling
                 return;
             }
 
-            
+
 
             //Check dumplicate username
-            sql.Open();
-            query = string.Format("SELECT Username FROM ACCOUNT WHERE username='{0}' COLLATE Latin1_General_CS_AS", UsTb.Text.ToString());
-            cmd = new SqlCommand(query, sql);
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
-                if (dataReader.GetValue(0) != null)
-                {
-                    UsernameLb.ForeColor = Color.Red;
-                    sql.Close();
-                    return;
-                }
-            sql.Close();
+            string query = string.Format("SELECT Username FROM ACCOUNT WHERE username='{0}' COLLATE Latin1_General_CS_AS", UsTb.Text.ToString());
+            string check = sql.Read(0, query);
+            if (!string.IsNullOrEmpty(check))
+            {
+                UsernameLb.ForeColor = Color.Red;
+                return;
+            }
 
             //Adding user infomations into database
-            sql.Open();
             query = string.Format("INSERT INTO USERS VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','User')",
                 FirstNameTb.Text,
                 LastNameTb.Text,
@@ -180,29 +164,18 @@ namespace TicketSelling
                 EmailTb.Text,
                 GenderListBox.SelectedItem.ToString(),
                 DoBTb.Value.ToString("yyyy-MM-dd"));
-            cmd = new SqlCommand(query, sql);
-            cmd.ExecuteNonQuery();
+            sql.Add(query);
 
             //Get user ID
             query = String.Format("SELECT TOP 1 * FROM USERS ORDER BY ID DESC;");
-            cmd = new SqlCommand(query, sql);
-
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
-            {
-                ID = (string) dataReader.GetValue(1);
-            }
-            sql.Close();
+            string ID = sql.Read(1, query);
 
             //Add user login infomation into Account table
-            sql.Open();
             query = String.Format("INSERT INTO ACCOUNT VALUES ('{0}','{1}','{2}')",
             UsTb.Text, PwTb.Text, ID);
-            cmd = new SqlCommand(query, sql);
-            cmd.ExecuteNonQuery();
-
-            sql.Close();
+            sql.Add(query);
             this.Close();
+            MessageBox.Show("Sign up successfull");
         }
 
     }

@@ -1,82 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace TicketSelling
 {
     public partial class SignInForm : Form
     {
-        public SqlConnection sql;
-        SqlCommand cmd;
-        SqlDataReader dataReader;
-        string query, role;
+        private SQL sql;
+
         public SignInForm()
         {
             InitializeComponent();
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "DOKUSLAPTOP\\DOKUSQL";
-            builder.UserID = "sa";
-            builder.Password = "123";
-            builder.InitialCatalog = "TicketSelling";
-
-            sql = new SqlConnection(builder.ConnectionString);
+            sql = new SQL("DOKUSLAPTOP\\DOKUSQL", "sa", "123", "TicketSelling");
 
             //SqlConnection sql = new SqlConnection(conString);
             //sql.Open();
-
-        }
-
-        private string checkQuote(string str)
-        {
-            if (str.Contains("'"))
-            {
-                str = str.Insert(str.IndexOf("'"), "'");
-            }
-            return str;
         }
 
         private void LoginBt_Click(object sender, EventArgs e)
         {
-            string us = checkQuote(UsernameTextbox.Text);
-            string pw = checkQuote(PasswordTextbox.Text);
+            string us = sql.checkQuote(UsernameTextbox.Text);
+            string pw = sql.checkQuote(PasswordTextbox.Text);
 
             //Check quote character
-            
-
-            sql.Open();
-
-            query = "SELECT * FROM ACCOUNT" +
-                " WHERE Username = '"+us+ "' COLLATE Latin1_General_CS_AS AND Pass_Account='" + pw+ "' COLLATE Latin1_General_CS_AS";
-            cmd = new SqlCommand(query, sql);
-            dataReader = cmd.ExecuteReader();
-            if (!dataReader.Read())
+            string query = "SELECT * FROM ACCOUNT" +
+                " WHERE Username = '" + us + "' COLLATE Latin1_General_CS_AS AND Pass_Account='" + pw + "' COLLATE Latin1_General_CS_AS";
+            string ID = sql.Read(2, query);
+            if (string.IsNullOrEmpty(ID))
             {
-                MessageBox.Show("Wrong Username or Password!"); 
+                MessageBox.Show("Wrong Username or Password!");
             }
-            else 
+            else
             {
-                string ID = (string)dataReader.GetValue(2);
-                sql.Close();
-                
-                sql.Open();
                 query = string.Format("SELECT Last_name from USERS " +
-                    "WHERE ID_User = '{0}'",ID);
-                cmd = new SqlCommand(query, sql);
-                dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    MessageBox.Show("Welcome " + dataReader.GetValue(0));
-                }
-                sql.Close();
-                role = getRole(ID);
-                if(role == "Driver")
+                    "WHERE ID_User = '{0}'", ID);
+                string name = sql.Read(0, query);
+                MessageBox.Show("Welcome " + name);
+
+                string role = getRole(ID);
+                if (role == "Driver")
                 {
                     this.Hide();
                     var driverForm = new DriverForm(sql, ID);
@@ -84,29 +45,22 @@ namespace TicketSelling
                     driverForm.Closed += (s, arg) => this.Close();
                 }
             }
-            sql.Close();
         }
 
         private string getRole(string ID)
         {
-            string role="";
-            sql.Open();
-            query = string.Format("SELECT Role_User " +
+            string role = "";
+            string query = string.Format("SELECT Role_User " +
                 "FROM USERS " +
-                "WHERE ID_User = '{0}'",ID);
-            cmd = new SqlCommand(query, sql);
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
-            {
-                role = (string)dataReader.GetValue(0);
-            }
-            sql.Close();
-            return role;
+                "WHERE ID_User = '{0}'", ID);
+            return sql.Read(0, query);
         }
         private void label2_Click(object sender, EventArgs e)
         {
             SignUpForm signup = new SignUpForm(sql);
             signup.Show();
+            this.Hide();
+            signup.FormClosed += (s,arg) =>this.Show();
         }
 
         //  public string conString = "Data Source=DOKUSLAPTOP;Initial Catalog=TestConnectSQL;Integrated Security=True";

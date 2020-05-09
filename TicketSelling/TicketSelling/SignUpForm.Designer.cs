@@ -53,11 +53,13 @@
             this.PhoneLb = new System.Windows.Forms.Label();
             this.FirstNameLb = new System.Windows.Forms.Label();
             this.SignUpLabel = new System.Windows.Forms.Label();
+            this.MissInfLb = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.MissInfLb);
             this.panel1.Controls.Add(this.checkPwLb);
             this.panel1.Controls.Add(this.ConfirmBt);
             this.panel1.Controls.Add(this.DoBTb);
@@ -99,6 +101,7 @@
             // 
             // ConfirmBt
             // 
+            this.ConfirmBt.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.ConfirmBt.Location = new System.Drawing.Point(268, 344);
             this.ConfirmBt.Name = "ConfirmBt";
             this.ConfirmBt.Size = new System.Drawing.Size(178, 36);
@@ -111,7 +114,7 @@
             // 
             this.DoBTb.Location = new System.Drawing.Point(123, 280);
             this.DoBTb.Name = "DoBTb";
-            this.DoBTb.Size = new System.Drawing.Size(227, 22);
+            this.DoBTb.Size = new System.Drawing.Size(252, 22);
             this.DoBTb.TabIndex = 18;
             // 
             // GenderListBox
@@ -294,10 +297,21 @@
             this.SignUpLabel.TabIndex = 0;
             this.SignUpLabel.Text = "Sign Up";
             // 
+            // MissInfLb
+            // 
+            this.MissInfLb.AutoSize = true;
+            this.MissInfLb.ForeColor = System.Drawing.Color.Red;
+            this.MissInfLb.Location = new System.Drawing.Point(120, 19);
+            this.MissInfLb.Name = "MissInfLb";
+            this.MissInfLb.Size = new System.Drawing.Size(228, 17);
+            this.MissInfLb.TabIndex = 22;
+            this.MissInfLb.Text = "*Please fill the missing information!!";
+            this.MissInfLb.Visible = false;
+            // 
             // SignUpForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Name = "SignUpForm";
@@ -335,5 +349,6 @@
         private System.Windows.Forms.Label checkPwLb;
         private System.Windows.Forms.TextBox LastNameTb;
         private System.Windows.Forms.Label LastNameLb;
+        private System.Windows.Forms.Label MissInfLb;
     }
 }
