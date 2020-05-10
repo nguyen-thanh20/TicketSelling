@@ -1,5 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace TicketSelling
 {
@@ -26,35 +28,59 @@ namespace TicketSelling
         }
         public string Read(int index, string query)
         {
-            sql.Open();
-            SqlCommand cmd = new SqlCommand(query, sql);
-            SqlDataReader dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
+            try
             {
-                string value = (string)dataReader.GetValue(index);
+                sql.Open();
+                SqlCommand cmd = new SqlCommand(query, sql);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    string value = (string)dataReader.GetValue(index);
+                    sql.Close();
+                    return value;
+                }
                 sql.Close();
-                return value;
             }
-            sql.Close();
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
             return null;
         }
 
         public DataSet Read(string query)
         {
-            sql.Open();
-            SqlCommand cmd = new SqlCommand(query, sql);
-            SqlDataAdapter data = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
-            data.Fill(ds);
-            sql.Close();
+            try
+            {
+                sql.Open();
+                SqlCommand cmd = new SqlCommand(query, sql);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(ds);
+                sql.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
             return ds;
         }
         public bool Add(string query)
         {
-            sql.Open();
-            SqlCommand cmd = new SqlCommand(query, sql);
-            cmd.ExecuteNonQuery();
-            sql.Close();
+            try
+            {
+                sql.Open();
+                SqlCommand cmd = new SqlCommand(query, sql);
+                cmd.ExecuteNonQuery();
+                sql.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.ToString());
+                throw;
+            }
             return true;
         }
     }

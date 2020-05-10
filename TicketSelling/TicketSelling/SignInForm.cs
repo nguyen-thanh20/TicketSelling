@@ -11,7 +11,6 @@ namespace TicketSelling
         {
             InitializeComponent();
             sql = new SQL("DOKUSLAPTOP\\DOKUSQL", "sa", "123", "TicketSelling");
-
             //SqlConnection sql = new SqlConnection(conString);
             //sql.Open();
         }
@@ -37,13 +36,28 @@ namespace TicketSelling
                 MessageBox.Show("Welcome " + name);
 
                 string role = getRole(ID);
-                if (role == "Driver")
-                {
-                    this.Hide();
-                    var driverForm = new DriverForm(sql, ID);
-                    driverForm.Show();
-                    driverForm.Closed += (s, arg) => this.Close();
-                }
+                ChangeForm(role,ID);
+            }
+        }
+
+        private void ChangeForm(string role, string ID)
+        {
+            if (role == "Driver")
+            {
+                this.Hide();
+                var driverForm = new DriverForm(sql, ID);
+                driverForm.Show();
+                driverForm.Closed += (s, arg) => this.Close();
+                return;
+            }
+
+            if (role == "Manager")
+            {
+                this.Hide();
+                var managerForm = new ManagerForm(sql, ID);
+                managerForm.Show();
+                managerForm.Closed += (s, arg) => this.Close();
+                return;
             }
         }
 
