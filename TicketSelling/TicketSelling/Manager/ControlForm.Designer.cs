@@ -57,6 +57,9 @@
             this.DeleteBt = new System.Windows.Forms.Button();
             this.AddBt = new System.Windows.Forms.Button();
             this.EditBt = new System.Windows.Forms.Button();
+            this.SearchFromTb = new System.Windows.Forms.TextBox();
+            this.SourceLb = new System.Windows.Forms.Label();
+            this.DestLb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).BeginInit();
             this.DetailGB.SuspendLayout();
             this.SuspendLayout();
@@ -276,7 +279,7 @@
             // 
             // SearchTb
             // 
-            this.SearchTb.Location = new System.Drawing.Point(204, 49);
+            this.SearchTb.Location = new System.Drawing.Point(259, 48);
             this.SearchTb.Name = "SearchTb";
             this.SearchTb.Size = new System.Drawing.Size(185, 22);
             this.SearchTb.TabIndex = 29;
@@ -296,21 +299,32 @@
             // SearchCB
             // 
             this.SearchCB.FormattingEnabled = true;
+            this.SearchCB.Items.AddRange(new object[] {
+            "Source - Destination",
+            "Date_Trip",
+            "Start_Time",
+            "Arrival_Time",
+            "Total_Seat",
+            "Price",
+            "Discount",
+            "Driver_ID"});
             this.SearchCB.Location = new System.Drawing.Point(80, 48);
             this.SearchCB.Name = "SearchCB";
             this.SearchCB.Size = new System.Drawing.Size(118, 24);
             this.SearchCB.TabIndex = 31;
+            this.SearchCB.SelectedValueChanged += new System.EventHandler(this.SearchCB_SelectedValueChanged);
             // 
             // SearchBt
             // 
             this.SearchBt.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.SearchBt.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SearchBt.Location = new System.Drawing.Point(395, 49);
+            this.SearchBt.Location = new System.Drawing.Point(450, 48);
             this.SearchBt.Name = "SearchBt";
             this.SearchBt.Size = new System.Drawing.Size(72, 25);
             this.SearchBt.TabIndex = 9;
             this.SearchBt.Text = "Find";
             this.SearchBt.UseVisualStyleBackColor = false;
+            this.SearchBt.Click += new System.EventHandler(this.SearchBt_Click);
             // 
             // DeleteBt
             // 
@@ -345,14 +359,46 @@
             this.EditBt.Text = "Edit";
             this.EditBt.UseVisualStyleBackColor = false;
             // 
+            // SearchFromTb
+            // 
+            this.SearchFromTb.Location = new System.Drawing.Point(259, 20);
+            this.SearchFromTb.Name = "SearchFromTb";
+            this.SearchFromTb.Size = new System.Drawing.Size(185, 22);
+            this.SearchFromTb.TabIndex = 29;
+            this.SearchFromTb.Tag = "";
+            this.SearchFromTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SearchFromTb.Visible = false;
+            // 
+            // SourceLb
+            // 
+            this.SourceLb.AutoSize = true;
+            this.SourceLb.Location = new System.Drawing.Point(204, 23);
+            this.SourceLb.Name = "SourceLb";
+            this.SourceLb.Size = new System.Drawing.Size(53, 17);
+            this.SourceLb.TabIndex = 32;
+            this.SourceLb.Text = "Source";
+            this.SourceLb.Visible = false;
+            // 
+            // DestLb
+            // 
+            this.DestLb.AutoSize = true;
+            this.DestLb.Location = new System.Drawing.Point(204, 51);
+            this.DestLb.Name = "DestLb";
+            this.DestLb.Size = new System.Drawing.Size(37, 17);
+            this.DestLb.TabIndex = 32;
+            this.DestLb.Text = "Dest";
+            // 
             // ControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 602);
+            this.Controls.Add(this.DestLb);
+            this.Controls.Add(this.SourceLb);
             this.Controls.Add(this.SearchCB);
             this.Controls.Add(this.DetailGB);
             this.Controls.Add(this.SearchLb);
+            this.Controls.Add(this.SearchFromTb);
             this.Controls.Add(this.SearchTb);
             this.Controls.Add(this.DataShow);
             this.Controls.Add(this.SearchBt);
@@ -399,5 +445,8 @@
         private System.Windows.Forms.Button DeleteBt;
         private System.Windows.Forms.Button AddBt;
         private System.Windows.Forms.Button EditBt;
+        private System.Windows.Forms.TextBox SearchFromTb;
+        private System.Windows.Forms.Label SourceLb;
+        private System.Windows.Forms.Label DestLb;
     }
 }

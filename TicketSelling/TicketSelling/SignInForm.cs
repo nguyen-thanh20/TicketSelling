@@ -11,6 +11,7 @@ namespace TicketSelling
         {
             InitializeComponent();
             sql = new SQL("DOKUSLAPTOP\\DOKUSQL", "sa", "123", "TicketSelling");
+            //ChangeForm("Manager", "ID000003");
             //SqlConnection sql = new SqlConnection(conString);
             //sql.Open();
         }
