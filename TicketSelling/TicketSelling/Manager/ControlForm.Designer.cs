@@ -69,6 +69,7 @@
             this.DataShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataShow.Location = new System.Drawing.Point(12, 76);
             this.DataShow.Name = "DataShow";
+            this.DataShow.ReadOnly = true;
             this.DataShow.RowHeadersWidth = 51;
             this.DataShow.RowTemplate.Height = 24;
             this.DataShow.Size = new System.Drawing.Size(512, 474);
@@ -98,6 +99,7 @@
             this.DetailGB.Controls.Add(this.cancelBt);
             this.DetailGB.Controls.Add(this.DestinationTb);
             this.DetailGB.Controls.Add(this.SourceTb);
+            this.DetailGB.Enabled = false;
             this.DetailGB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DetailGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.DetailGB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -251,6 +253,7 @@
             this.saveBt.TabIndex = 9;
             this.saveBt.Text = "Save";
             this.saveBt.UseVisualStyleBackColor = false;
+            this.saveBt.Click += new System.EventHandler(this.saveBt_Click);
             // 
             // cancelBt
             // 
@@ -358,6 +361,7 @@
             this.EditBt.TabIndex = 9;
             this.EditBt.Text = "Edit";
             this.EditBt.UseVisualStyleBackColor = false;
+            this.EditBt.Click += new System.EventHandler(this.EditBt_Click);
             // 
             // SearchFromTb
             // 
@@ -384,9 +388,9 @@
             this.DestLb.AutoSize = true;
             this.DestLb.Location = new System.Drawing.Point(204, 51);
             this.DestLb.Name = "DestLb";
-            this.DestLb.Size = new System.Drawing.Size(37, 17);
+            this.DestLb.Size = new System.Drawing.Size(32, 17);
             this.DestLb.TabIndex = 32;
-            this.DestLb.Text = "Dest";
+            this.DestLb.Text = "Key";
             // 
             // ControlForm
             // 

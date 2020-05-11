@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -22,7 +21,13 @@ namespace TicketSelling
         {
             if (str.Contains("'"))
             {
-                str = str.Insert(str.IndexOf("'"), "'");
+                for (int i = 0; i < str.Length; i++)
+                {
+                    if (str[i] == '\'')
+                    {
+                        str = str.Insert(i - 1, "'");
+                    }
+                }
             }
             return str;
         }

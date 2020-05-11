@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicketSelling.Manager;
 
@@ -20,24 +14,24 @@ namespace TicketSelling
         {
             InitializeComponent();
             this.sql = sql;
-            this.ID  = ID;
+            this.ID = ID;
             tempForm = new List<Form>();
         }
 
         private void ControlBt_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new ControlForm(sql,ID));
+            ShowChildForm(new ControlForm(sql, ID));
         }
 
         private void ShowChildForm(Form child)
         {
-            if(tempForm.Count != 0)
+            if (tempForm.Count != 0)
             {
-                foreach(var x in tempForm)
+                foreach (var x in tempForm)
                 {
-                    if(x.GetType() == child.GetType())
+                    if (x.GetType() == child.GetType())
                     {
-                        tempForm[tempForm.Count-1].Hide();
+                        tempForm[tempForm.Count - 1].Hide();
                         x.BringToFront();
                         x.Show();
                         return;

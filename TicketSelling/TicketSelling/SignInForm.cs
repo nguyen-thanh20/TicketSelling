@@ -11,7 +11,7 @@ namespace TicketSelling
         {
             InitializeComponent();
             sql = new SQL("DOKUSLAPTOP\\DOKUSQL", "sa", "123", "TicketSelling");
-            //ChangeForm("Manager", "ID000003");
+            ChangeForm("Manager", "UID00000003");
             //SqlConnection sql = new SqlConnection(conString);
             //sql.Open();
         }
@@ -37,7 +37,7 @@ namespace TicketSelling
                 MessageBox.Show("Welcome " + name);
 
                 string role = getRole(ID);
-                ChangeForm(role,ID);
+                ChangeForm(role, ID);
             }
         }
 
@@ -75,7 +75,7 @@ namespace TicketSelling
             SignUpForm signup = new SignUpForm(sql);
             signup.Show();
             this.Hide();
-            signup.FormClosed += (s,arg) =>this.Show();
+            signup.FormClosed += (s, arg) => this.Show();
         }
 
         //  public string conString = "Data Source=DOKUSLAPTOP;Initial Catalog=TestConnectSQL;Integrated Security=True";
