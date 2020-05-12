@@ -1,0 +1,16 @@
+C:\Users\ADMIN\source\repos\Manager\Manager\bin\Debug\Manager.exe.config
+C:\Users\ADMIN\source\repos\Manager\Manager\bin\Debug\Manager.exe
+C:\Users\ADMIN\source\repos\Manager\Manager\bin\Debug\Manager.pdb
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.csprojAssemblyReference.cache
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.Properties.Resources.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.csproj.GenerateResource.cache
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.exe
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.pdb
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.MainFrame.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.TripManage.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.IncomingTrip.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.OutDatedTrip.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.GuestList.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.Income.resources
+C:\Users\ADMIN\source\repos\Manager\Manager\obj\Debug\Manager.Contact.resources
