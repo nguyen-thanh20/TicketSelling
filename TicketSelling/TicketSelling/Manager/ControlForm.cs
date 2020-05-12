@@ -9,7 +9,7 @@ namespace TicketSelling.Manager
     public partial class ControlForm : Form
     {
         private SQL sql;
-        private string ID_Mana, ID_Trip;
+        private string ID_Mana, ID_Trip, func;
         string default_query = "select Source, " +
                                     "Destination," +
                                     "Date_Trip," +
@@ -113,6 +113,8 @@ namespace TicketSelling.Manager
         {
             if (!string.IsNullOrEmpty(SourceTb.Text))
                 DetailGB.Enabled = true;
+            func = "Edit";
+            saveBt.Text = "Save";
         }
 
         private void saveBt_Click(object sender, EventArgs e)
@@ -128,14 +130,36 @@ namespace TicketSelling.Manager
             DateTime start = DateTime.ParseExact(StartTimeTb.Text, "HH:mm:ss", new DateTimeFormatInfo());
             DateTime end   = DateTime.ParseExact(ArrivalTimeTb.Text, "HH:mm:ss", new DateTimeFormatInfo());
             TimeSpan Duration = end.Subtract(start);
-
-            string query = string.Format("UPDATE TRIP SET Source = '{0}', Destination = '{1}', Date_Trip = '{2}', Start_Time = '{3}', Arrival_Time = '{4}', " +
-                "Duration = '{5}', Total_Seat = {6}, Price = '{7}', Discount = '{8}', ID_Driver = '{9}', ID_Manager = '{10}' " +
-                "WHERE ID_Trip = '{11}'",
-                SourceTb.Text, DestinationTb.Text, DateTripTb.Value.ToString(), start.ToString(), end.ToString(), Duration.ToString(),
-                TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana, this.ID_Trip);
+            string query = default;
+            if (func == "Edit")
+            {
+                query = string.Format("UPDATE TRIP SET Source = '{0}', Destination = '{1}', Date_Trip = '{2}', Start_Time = '{3}', Arrival_Time = '{4}', " +
+                    "Duration = '{5}', Total_Seat = {6}, Price = '{7}', Discount = '{8}', ID_Driver = '{9}', ID_Manager = '{10}' " +
+                    "WHERE ID_Trip = '{11}'",
+                    SourceTb.Text, DestinationTb.Text, DateTripTb.Value.ToString(), start.ToString(), end.ToString(), Duration.ToString(),
+                    TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana, this.ID_Trip);
+            }
+            else if(func == "Add")
+            {
+                query = string.Format("INSERT INTO TRIP VALUES('{0}', '{1}', '{2}', '{3}', '{4}', " +
+                    "'{5}', {6}, {7}, {8}, {9}, '{10}','{11}') ",
+                    SourceTb.Text, DestinationTb.Text, DateTripTb.Value.ToString(), start.ToString(), end.ToString(), Duration.ToString(),
+                    TotalSeatTb.Text, TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana);
+            }
             sql.Add(query);
             DataLoader();
+        }
+
+        private void cancelBt_Click(object sender, EventArgs e)
+        {
+            DetailGB.Enabled = false;
+        }
+
+        private void AddBt_Click(object sender, EventArgs e)
+        {
+            func = "Add";
+            saveBt.Text = "Add";
+            DetailGB.Enabled = true;
         }
 
         private void DataShow_CellClick(object sender, DataGridViewCellEventArgs e)

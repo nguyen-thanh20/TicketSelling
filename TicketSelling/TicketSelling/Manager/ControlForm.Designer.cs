@@ -265,6 +265,7 @@
             this.cancelBt.TabIndex = 8;
             this.cancelBt.Text = "Cancel";
             this.cancelBt.UseVisualStyleBackColor = false;
+            this.cancelBt.Click += new System.EventHandler(this.cancelBt_Click);
             // 
             // DestinationTb
             // 
@@ -350,6 +351,7 @@
             this.AddBt.TabIndex = 9;
             this.AddBt.Text = "Add";
             this.AddBt.UseVisualStyleBackColor = false;
+            this.AddBt.Click += new System.EventHandler(this.AddBt_Click);
             // 
             // EditBt
             // 
