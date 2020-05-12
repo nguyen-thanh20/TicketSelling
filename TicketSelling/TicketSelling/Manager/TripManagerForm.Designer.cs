@@ -428,7 +428,7 @@
             this.Controls.Add(this.AddBt);
             this.Controls.Add(this.DeleteBt);
             this.Name = "TripManagerForm";
-            this.Text = "Control";
+            this.Text = "Trip Manager Form";
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).EndInit();
             this.DetailGB.ResumeLayout(false);
             this.DetailGB.PerformLayout();
