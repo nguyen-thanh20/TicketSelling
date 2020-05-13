@@ -63,11 +63,11 @@ namespace TicketSelling.Manager
 
             if (string.Equals(col, "Source - Destination"))
             {
-                query = string.Format("{0} WHERE Source like '{1}%' AND Destination like '{2}%'",
+                query = string.Format("{0} WHERE Source like '{1}%' AND Destination like '{2}%' AND ID_Manager = '" + ID_Mana + "'",
                     default_query, sql.checkQuote(from), sql.checkQuote(search));
             }
             else
-                query = string.Format("{0} WHERE {1} like '{2}%'", default_query, col, sql.checkQuote(search));
+                query = string.Format("{0} WHERE {1} like '{2}%' AND ID_Manager = '" + ID_Mana + "'", default_query, col, sql.checkQuote(search));
             DataShow.DataSource = sql.Read(query).Tables[0];
         }
         private bool isBlank(TextBox tb)
@@ -103,10 +103,16 @@ namespace TicketSelling.Manager
                 DestLb.Text = "Dest";
             }
             else
+            if (string.Equals(SearchCB.SelectedItem.ToString(), "Date_Trip"))
+            {
+                warningDateInputLb.Visible = true;
+            }
+            else
             {
                 SearchFromTb.Hide();
                 SourceLb.Hide();
                 DestLb.Text = "Key";
+                warningDateInputLb.Visible = false;
             }
         }
 
@@ -195,7 +201,7 @@ namespace TicketSelling.Manager
 
         private void DataShow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
+            if (e.RowIndex < 0 || e.RowIndex >= DataShow.RowCount - 1)
                 return;
             try
             {

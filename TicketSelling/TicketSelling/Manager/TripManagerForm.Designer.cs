@@ -60,6 +60,7 @@
             this.SearchFromTb = new System.Windows.Forms.TextBox();
             this.SourceLb = new System.Windows.Forms.Label();
             this.DestLb = new System.Windows.Forms.Label();
+            this.warningDateInputLb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).BeginInit();
             this.DetailGB.SuspendLayout();
             this.SuspendLayout();
@@ -396,6 +397,18 @@
             this.DestLb.TabIndex = 32;
             this.DestLb.Text = "Key";
             // 
+            // warningDateInputLb
+            // 
+            this.warningDateInputLb.AutoSize = true;
+            this.warningDateInputLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningDateInputLb.ForeColor = System.Drawing.Color.Red;
+            this.warningDateInputLb.Location = new System.Drawing.Point(12, 20);
+            this.warningDateInputLb.Name = "warningDateInputLb";
+            this.warningDateInputLb.Size = new System.Drawing.Size(150, 18);
+            this.warningDateInputLb.TabIndex = 30;
+            this.warningDateInputLb.Text = "*Format YYYYmmDD";
+            this.warningDateInputLb.Visible = false;
+            // 
             // TripManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -405,6 +418,7 @@
             this.Controls.Add(this.SourceLb);
             this.Controls.Add(this.SearchCB);
             this.Controls.Add(this.DetailGB);
+            this.Controls.Add(this.warningDateInputLb);
             this.Controls.Add(this.SearchLb);
             this.Controls.Add(this.SearchFromTb);
             this.Controls.Add(this.SearchTb);
@@ -456,5 +470,6 @@
         private System.Windows.Forms.TextBox SearchFromTb;
         private System.Windows.Forms.Label SourceLb;
         private System.Windows.Forms.Label DestLb;
+        private System.Windows.Forms.Label warningDateInputLb;
     }
 }

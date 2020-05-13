@@ -26,13 +26,13 @@ namespace TicketSelling
 
         private bool LoadData() // Load the default data
         {
-            DataShow.DataSource = sql.Read(default_query).Tables[0];
+            DataShow.DataSource = sql.Read(default_query + "WHERE Role_User = 'Driver'").Tables[0];
             return true;
         }
 
         private void DataShow_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) //Return when user click on top of col or row
+            if (e.RowIndex < 0 || e.RowIndex >= DataShow.RowCount - 1) //Return when user click on top of col or row
                 return;
             try
             {
@@ -130,7 +130,7 @@ namespace TicketSelling
                 return;
             }
 
-            string query = string.Format("{0} WHERE {1} like '{2}%'",
+            string query = string.Format("{0} WHERE Role_User = 'Driver' AND {1} like '{2}%'",
                 default_query, SearchCB.SelectedItem.ToString(), sql.checkQuote(SearchTb.Text));
             DataShow.DataSource = sql.Read(query).Tables[0];
         }
@@ -138,6 +138,15 @@ namespace TicketSelling
         private void cancelBt_Click(object sender, EventArgs e)
         {
             DetailGB.Enabled = false;
+        }
+
+        private void SearchCB_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (string.Equals(SearchCB.SelectedItem.ToString(), "Date_Of_Birth"))
+            {
+                warningDateInputLb.Visible = true;
+            }
+            else warningDateInputLb.Visible = false;
         }
 
         private void PhoneTb_KeyDown(object sender, KeyEventArgs e) //Accept only number

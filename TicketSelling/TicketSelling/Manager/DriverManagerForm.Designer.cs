@@ -56,6 +56,7 @@
             this.DestLb = new System.Windows.Forms.Label();
             this.SearchCB = new System.Windows.Forms.ComboBox();
             this.SearchTb = new System.Windows.Forms.TextBox();
+            this.warningDateInputLb = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).BeginInit();
             this.DetailGB.SuspendLayout();
             this.SuspendLayout();
@@ -348,6 +349,7 @@
             this.SearchCB.Name = "SearchCB";
             this.SearchCB.Size = new System.Drawing.Size(118, 24);
             this.SearchCB.TabIndex = 40;
+            this.SearchCB.SelectedValueChanged += new System.EventHandler(this.SearchCB_SelectedValueChanged);
             // 
             // SearchTb
             // 
@@ -358,11 +360,24 @@
             this.SearchTb.Tag = "";
             this.SearchTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // warningDateInputLb
+            // 
+            this.warningDateInputLb.AutoSize = true;
+            this.warningDateInputLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningDateInputLb.ForeColor = System.Drawing.Color.Red;
+            this.warningDateInputLb.Location = new System.Drawing.Point(252, 12);
+            this.warningDateInputLb.Name = "warningDateInputLb";
+            this.warningDateInputLb.Size = new System.Drawing.Size(150, 18);
+            this.warningDateInputLb.TabIndex = 53;
+            this.warningDateInputLb.Text = "*Format YYYYmmDD";
+            this.warningDateInputLb.Visible = false;
+            // 
             // DriverManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 602);
+            this.Controls.Add(this.warningDateInputLb);
             this.Controls.Add(this.DestLb);
             this.Controls.Add(this.SearchCB);
             this.Controls.Add(this.SearchTb);
@@ -413,5 +428,6 @@
         private System.Windows.Forms.Label DestLb;
         private System.Windows.Forms.ComboBox SearchCB;
         private System.Windows.Forms.TextBox SearchTb;
+        private System.Windows.Forms.Label warningDateInputLb;
     }
 }

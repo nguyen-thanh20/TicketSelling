@@ -33,6 +33,8 @@
             this.ManagerLb = new System.Windows.Forms.Label();
             this.TripBt = new System.Windows.Forms.Button();
             this.DriverBt = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.UserBt = new System.Windows.Forms.Button();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +49,8 @@
             // 
             this.LeftPanel.Controls.Add(this.ManagerLb);
             this.LeftPanel.Controls.Add(this.TripBt);
+            this.LeftPanel.Controls.Add(this.UserBt);
+            this.LeftPanel.Controls.Add(this.button1);
             this.LeftPanel.Controls.Add(this.DriverBt);
             this.LeftPanel.Location = new System.Drawing.Point(0, 0);
             this.LeftPanel.Name = "LeftPanel";
@@ -83,6 +87,26 @@
             this.DriverBt.UseVisualStyleBackColor = true;
             this.DriverBt.Click += new System.EventHandler(this.DriverBt_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(-2, 192);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(253, 51);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Driver";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.DriverBt_Click);
+            // 
+            // UserBt
+            // 
+            this.UserBt.Location = new System.Drawing.Point(0, 192);
+            this.UserBt.Name = "UserBt";
+            this.UserBt.Size = new System.Drawing.Size(253, 51);
+            this.UserBt.TabIndex = 6;
+            this.UserBt.Text = "User";
+            this.UserBt.UseVisualStyleBackColor = true;
+            this.UserBt.Click += new System.EventHandler(this.UserBt_Click);
+            // 
             // ManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -105,5 +129,7 @@
         private System.Windows.Forms.Label ManagerLb;
         private System.Windows.Forms.Button TripBt;
         private System.Windows.Forms.Button DriverBt;
+        private System.Windows.Forms.Button UserBt;
+        private System.Windows.Forms.Button button1;
     }
 }

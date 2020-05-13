@@ -51,5 +51,10 @@ namespace TicketSelling
         {
             ShowChildForm(new TripManagerForm(sql, ID));
         }
+
+        private void UserBt_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new UserManagerForm(sql, ID));
+        }
     }
 }
