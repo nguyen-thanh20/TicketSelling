@@ -15,7 +15,7 @@ namespace TicketSelling
         private SQL sql;
         private string ID_Mana, func, 
             default_query = "select ID_User, First_Name, Last_Name, Phone, Address_User, " +
-                "Email, Gender_User, Date_Of_Birth from USERS";
+                "Email, Gender_User, Date_Of_Birth from USERS ";
         public DriverManager(SQL sql, string ID)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace TicketSelling
 
         private bool LoadData() // Load the default data
         {
-            DataShow.DataSource = sql.Read(default_query + "WHERE Role_User = 'Driver'").Tables[0];
+            DataShow.DataSource = sql.Read(default_query + " WHERE Role_User = 'Driver'").Tables[0];
             return true;
         }
 

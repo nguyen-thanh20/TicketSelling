@@ -10,6 +10,7 @@ namespace TicketSelling
         private SQL sql;
         private string ID;
         private List<Form> tempForm;
+        private Form curForm;
         public ManagerForm(SQL sql, string ID)
         {
             InitializeComponent();
@@ -26,13 +27,15 @@ namespace TicketSelling
                 {
                     if (x.GetType() == child.GetType())
                     {
-                        tempForm[tempForm.Count - 1].Hide();
+                        curForm.Hide();
                         x.BringToFront();
                         x.Show();
+                        curForm = x;
                         return;
                     }
                 }
             }
+            curForm = child;
             child.TopLevel = false;
             child.FormBorderStyle = FormBorderStyle.None;
             child.Dock = DockStyle.Top;

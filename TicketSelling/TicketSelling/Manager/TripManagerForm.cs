@@ -64,10 +64,10 @@ namespace TicketSelling.Manager
             if (string.Equals(col, "Source - Destination"))
             {
                 query = string.Format("{0} WHERE Source like '{1}%' AND Destination like '{2}%' AND ID_Manager = '" + ID_Mana + "'",
-                    default_query, sql.checkQuote(from), sql.checkQuote(search));
+                    default_query, from, search);
             }
             else
-                query = string.Format("{0} WHERE {1} like '{2}%' AND ID_Manager = '" + ID_Mana + "'", default_query, col, sql.checkQuote(search));
+                query = string.Format("{0} WHERE {1} like '{2}%' AND ID_Manager = '" + ID_Mana + "'", default_query, col, search);
             DataShow.DataSource = sql.Read(query).Tables[0];
         }
         private bool isBlank(TextBox tb)
@@ -144,19 +144,36 @@ namespace TicketSelling.Manager
                     "Duration = '{5}', Total_Seat = {6}, Price = '{7}', Discount = '{8}', ID_Driver = '{9}', ID_Manager = '{10}' " +
                     "WHERE ID_Trip = '{11}'",
                     sql.checkQuote(SourceTb.Text), sql.checkQuote(DestinationTb.Text), 
-                    DateTripTb.Value.ToString("YYYY-mm-dd"), start.ToString(), end.ToString(), Duration.ToString(),
+                    DateTripTb.Value.ToString("yyyy-MM-dd"), start.ToString(), end.ToString(), Duration.ToString(),
                     TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana, this.ID_Trip);
             }
             else if(func == "Add")
             {
+                if(!driverValid())
+                {
+                    MessageBox.Show("Invalid driver time");
+                    return;
+                }
                 query = string.Format("INSERT INTO TRIP VALUES('{0}', '{1}', '{2}', '{3}', '{4}', " +
                     "'{5}', {6}, {7}, {8}, {9}, '{10}','{11}') ",
                     sql.checkQuote(SourceTb.Text), sql.checkQuote(DestinationTb.Text), 
-                    DateTripTb.Value.ToString("YYYY-mm-dd"), start.ToString(), end.ToString(), Duration.ToString(),
+                    DateTripTb.Value.ToString("yyyy-MM-dd"), start.ToString(), end.ToString(), Duration.ToString(),
                     TotalSeatTb.Text, TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana);
             }
             sql.Add(query);
             DataLoader();
+        }
+
+        private bool driverValid()
+        { 
+            string query = string.Format("select * from TRIP where ID_Manager = '{0}' AND " +
+                "ID_Driver = '{1}' and(('{2}' >= Start_Time and '{2}' <= Arrival_Time) " +
+                "or('{3}' >= Start_Time and '{3}' <= Arrival_Time) " +
+                "or('{2}' <= Start_Time and '{3}' >= Arrival_Time))",
+                ID_Mana, DriverIDTb.Text, StartTimeTb.Text, ArrivalTimeTb.Text);
+            if (string.IsNullOrEmpty(sql.Read(1, query)))
+                return true;
+            else return false;
         }
 
         private void cancelBt_Click(object sender, EventArgs e)

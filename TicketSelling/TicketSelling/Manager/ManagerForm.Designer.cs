@@ -40,6 +40,7 @@
             // 
             // RightPanel
             // 
+            this.RightPanel.AutoSize = true;
             this.RightPanel.Location = new System.Drawing.Point(255, 0);
             this.RightPanel.Name = "RightPanel";
             this.RightPanel.Size = new System.Drawing.Size(758, 649);
@@ -119,6 +120,7 @@
             this.LeftPanel.ResumeLayout(false);
             this.LeftPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
