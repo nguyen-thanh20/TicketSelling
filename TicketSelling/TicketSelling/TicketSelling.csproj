@@ -56,11 +56,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Manager\ControlForm.cs">
+    <Compile Include="Manager\DriverManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Manager\ControlForm.Designer.cs">
-      <DependentUpon>ControlForm.cs</DependentUpon>
+    <Compile Include="Manager\DriverManagerForm.Designer.cs">
+      <DependentUpon>DriverManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\TripManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manager\TripManagerForm.Designer.cs">
+      <DependentUpon>TripManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Manager\ManagerForm.cs">
       <SubType>Form</SubType>
@@ -93,8 +99,11 @@
     <EmbeddedResource Include="DriverForm.resx">
       <DependentUpon>DriverForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Manager\ControlForm.resx">
-      <DependentUpon>ControlForm.cs</DependentUpon>
+    <EmbeddedResource Include="Manager\DriverManagerForm.resx">
+      <DependentUpon>DriverManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manager\TripManagerForm.resx">
+      <DependentUpon>TripManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manager\ManagerForm.resx">
       <DependentUpon>ManagerForm.cs</DependentUpon>

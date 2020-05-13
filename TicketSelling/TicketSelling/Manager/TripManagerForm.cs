@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace TicketSelling.Manager
 {
-    public partial class ControlForm : Form
+    public partial class TripManagerForm : Form
     {
         private SQL sql;
         private string ID_Mana, ID_Trip, func;
@@ -22,7 +22,7 @@ namespace TicketSelling.Manager
                                     "ID_Driver, " +
                                     "ID_Trip " +
                                     "from TRIP ";
-        public ControlForm(SQL sql, string ID_Mana)
+        public TripManagerForm(SQL sql, string ID_Mana)
         {
             InitializeComponent();
             this.sql = sql;
@@ -32,7 +32,7 @@ namespace TicketSelling.Manager
 
         private void DataLoader()
         {
-            DataShow.DataSource = sql.Read(default_query).Tables[0];
+            DataShow.DataSource = sql.Read(default_query + " WHERE ID_Manager = '"+ID_Mana+"'").Tables[0];
         }
 
         private void SearchBt_Click(object sender, EventArgs e)
@@ -63,10 +63,11 @@ namespace TicketSelling.Manager
 
             if (string.Equals(col, "Source - Destination"))
             {
-                query = string.Format("{0} WHERE Source like '{1}%' AND Destination like '{2}%'", default_query, from, search);
+                query = string.Format("{0} WHERE Source like '{1}%' AND Destination like '{2}%'",
+                    default_query, sql.checkQuote(from), sql.checkQuote(search));
             }
             else
-                query = string.Format("{0} WHERE {1} like '{2}%'", default_query, col, search);
+                query = string.Format("{0} WHERE {1} like '{2}%'", default_query, col, sql.checkQuote(search));
             DataShow.DataSource = sql.Read(query).Tables[0];
         }
         private bool isBlank(TextBox tb)
@@ -136,14 +137,16 @@ namespace TicketSelling.Manager
                 query = string.Format("UPDATE TRIP SET Source = '{0}', Destination = '{1}', Date_Trip = '{2}', Start_Time = '{3}', Arrival_Time = '{4}', " +
                     "Duration = '{5}', Total_Seat = {6}, Price = '{7}', Discount = '{8}', ID_Driver = '{9}', ID_Manager = '{10}' " +
                     "WHERE ID_Trip = '{11}'",
-                    SourceTb.Text, DestinationTb.Text, DateTripTb.Value.ToString(), start.ToString(), end.ToString(), Duration.ToString(),
+                    sql.checkQuote(SourceTb.Text), sql.checkQuote(DestinationTb.Text), 
+                    DateTripTb.Value.ToString("YYYY-mm-dd"), start.ToString(), end.ToString(), Duration.ToString(),
                     TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana, this.ID_Trip);
             }
             else if(func == "Add")
             {
                 query = string.Format("INSERT INTO TRIP VALUES('{0}', '{1}', '{2}', '{3}', '{4}', " +
                     "'{5}', {6}, {7}, {8}, {9}, '{10}','{11}') ",
-                    SourceTb.Text, DestinationTb.Text, DateTripTb.Value.ToString(), start.ToString(), end.ToString(), Duration.ToString(),
+                    sql.checkQuote(SourceTb.Text), sql.checkQuote(DestinationTb.Text), 
+                    DateTripTb.Value.ToString("YYYY-mm-dd"), start.ToString(), end.ToString(), Duration.ToString(),
                     TotalSeatTb.Text, TotalSeatTb.Text, PriceTb.Text, DiscountTb.Text, DriverIDTb.Text, this.ID_Mana);
             }
             sql.Add(query);
@@ -153,6 +156,34 @@ namespace TicketSelling.Manager
         private void cancelBt_Click(object sender, EventArgs e)
         {
             DetailGB.Enabled = false;
+        }
+
+        private void PriceTb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if (e.KeyCode != Keys.Back)
+                    {
+                        e.SuppressKeyPress = true;
+                    }
+                }
+            }
+        }
+
+        private void DiscountTb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+            {
+                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+                {
+                    if (e.KeyCode != Keys.Back)
+                    {
+                        e.SuppressKeyPress = true;
+                    }
+                }
+            }
         }
 
         private void AddBt_Click(object sender, EventArgs e)

@@ -18,11 +18,6 @@ namespace TicketSelling
             tempForm = new List<Form>();
         }
 
-        private void ControlBt_Click(object sender, EventArgs e)
-        {
-            ShowChildForm(new ControlForm(sql, ID));
-        }
-
         private void ShowChildForm(Form child)
         {
             if (tempForm.Count != 0)
@@ -45,6 +40,16 @@ namespace TicketSelling
             tempForm.Add(child);
             child.BringToFront();
             child.Show();
+        }
+
+        private void DriverBt_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new DriverManager(sql, ID));
+        }
+
+        private void TripBt_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new TripManagerForm(sql, ID));
         }
     }
 }

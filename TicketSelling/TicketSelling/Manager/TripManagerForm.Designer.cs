@@ -1,6 +1,6 @@
 ﻿namespace TicketSelling.Manager
 {
-    partial class ControlForm
+    partial class TripManagerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -142,6 +142,7 @@
             this.DiscountTb.Name = "DiscountTb";
             this.DiscountTb.Size = new System.Drawing.Size(185, 22);
             this.DiscountTb.TabIndex = 26;
+            this.DiscountTb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DiscountTb_KeyDown);
             // 
             // DiscountLabel
             // 
@@ -158,6 +159,7 @@
             this.PriceTb.Name = "PriceTb";
             this.PriceTb.Size = new System.Drawing.Size(185, 22);
             this.PriceTb.TabIndex = 24;
+            this.PriceTb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PriceTb_KeyDown);
             // 
             // PriceLabel
             // 
@@ -394,7 +396,7 @@
             this.DestLb.TabIndex = 32;
             this.DestLb.Text = "Key";
             // 
-            // ControlForm
+            // TripManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -411,7 +413,7 @@
             this.Controls.Add(this.EditBt);
             this.Controls.Add(this.AddBt);
             this.Controls.Add(this.DeleteBt);
-            this.Name = "ControlForm";
+            this.Name = "TripManagerForm";
             this.Text = "Control";
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).EndInit();
             this.DetailGB.ResumeLayout(false);
