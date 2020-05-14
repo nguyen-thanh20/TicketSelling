@@ -427,6 +427,8 @@
             this.Controls.Add(this.EditBt);
             this.Controls.Add(this.AddBt);
             this.Controls.Add(this.DeleteBt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "TripManagerForm";
             this.Text = "Trip Manager Form";
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).EndInit();

@@ -32,9 +32,9 @@
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.ManagerLb = new System.Windows.Forms.Label();
             this.TripBt = new System.Windows.Forms.Button();
-            this.DriverBt = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.UserBt = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.DriverBt = new System.Windows.Forms.Button();
             this.LeftPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,15 +78,15 @@
             this.TripBt.UseVisualStyleBackColor = true;
             this.TripBt.Click += new System.EventHandler(this.TripBt_Click);
             // 
-            // DriverBt
+            // UserBt
             // 
-            this.DriverBt.Location = new System.Drawing.Point(0, 135);
-            this.DriverBt.Name = "DriverBt";
-            this.DriverBt.Size = new System.Drawing.Size(253, 51);
-            this.DriverBt.TabIndex = 6;
-            this.DriverBt.Text = "Driver";
-            this.DriverBt.UseVisualStyleBackColor = true;
-            this.DriverBt.Click += new System.EventHandler(this.DriverBt_Click);
+            this.UserBt.Location = new System.Drawing.Point(0, 192);
+            this.UserBt.Name = "UserBt";
+            this.UserBt.Size = new System.Drawing.Size(253, 51);
+            this.UserBt.TabIndex = 6;
+            this.UserBt.Text = "User";
+            this.UserBt.UseVisualStyleBackColor = true;
+            this.UserBt.Click += new System.EventHandler(this.UserBt_Click);
             // 
             // button1
             // 
@@ -98,15 +98,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.DriverBt_Click);
             // 
-            // UserBt
+            // DriverBt
             // 
-            this.UserBt.Location = new System.Drawing.Point(0, 192);
-            this.UserBt.Name = "UserBt";
-            this.UserBt.Size = new System.Drawing.Size(253, 51);
-            this.UserBt.TabIndex = 6;
-            this.UserBt.Text = "User";
-            this.UserBt.UseVisualStyleBackColor = true;
-            this.UserBt.Click += new System.EventHandler(this.UserBt_Click);
+            this.DriverBt.Location = new System.Drawing.Point(0, 135);
+            this.DriverBt.Name = "DriverBt";
+            this.DriverBt.Size = new System.Drawing.Size(253, 51);
+            this.DriverBt.TabIndex = 6;
+            this.DriverBt.Text = "Driver";
+            this.DriverBt.UseVisualStyleBackColor = true;
+            this.DriverBt.Click += new System.EventHandler(this.DriverBt_Click);
             // 
             // ManagerForm
             // 
@@ -115,6 +115,8 @@
             this.ClientSize = new System.Drawing.Size(1012, 649);
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.RightPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "ManagerForm";
             this.Text = "ManagerForm";
             this.LeftPanel.ResumeLayout(false);

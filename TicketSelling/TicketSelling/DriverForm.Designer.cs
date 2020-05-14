@@ -117,6 +117,8 @@
             this.Controls.Add(this.startDay);
             this.Controls.Add(this.DriverGridView);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "DriverForm";
             this.Text = "DriverForm";
             this.Load += new System.EventHandler(this.DriverForm_Load);

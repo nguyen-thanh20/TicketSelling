@@ -96,6 +96,9 @@ namespace TicketSelling.Manager
 
         private void SearchCB_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (SearchCB.SelectedValue == null)
+                return;
+
             if (string.Equals(SearchCB.SelectedItem.ToString(), "Source - Destination"))
             {
                 SearchFromTb.Show();

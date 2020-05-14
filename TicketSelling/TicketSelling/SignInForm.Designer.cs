@@ -133,6 +133,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(448, 586);
             this.Controls.Add(this.LoginPn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "SignInForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

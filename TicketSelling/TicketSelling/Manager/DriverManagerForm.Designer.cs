@@ -388,6 +388,8 @@
             this.Controls.Add(this.SearchLb);
             this.Controls.Add(this.DataShow);
             this.Controls.Add(this.SearchBt);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "DriverManager";
             this.Text = "DriverManager";
             ((System.ComponentModel.ISupportInitialize)(this.DataShow)).EndInit();
