@@ -1,8 +1,11 @@
 --Drop Database
+USE master
+IF EXISTS(select * from sys.databases where name='TicketSelling')
 DROP DATABASE TicketSelling
+Go
 --Create Database
 CREATE DATABASE TicketSelling;
-
+Go
 --Using Database
 USE TicketSelling
 
@@ -178,7 +181,7 @@ INSERT INTO PAYMENT VALUES ('Rio Ferdinand','Manchester Bank',103056389,'Credit 
 INSERT INTO PAYMENT VALUES ('Linda Nguyen','Bristol Bank',183466780,'Credit Card','20200512','TKID00000009')
 INSERT INTO PAYMENT VALUES ('Micheal Dean','Manchester Bank',120456119,'Debit Card','20200512','TKID00000010')
 
-
+Go
 --Create procedure
 CREATE PROC USP_Login
 @userName NVARCHAR (100), @passWord NVARCHAR (100)
@@ -337,15 +340,4 @@ AS
 BEGIN
 	SELECT* FROM dbo.TICKET WHERE ID_Ticket = @idTicket COLLATE SQL_Latin1_General_CP1_CS_AS
 END
-
-
 ---------------------------------------
-UPDATE dbo.TRIP SET Source = '', Destination
-SELECT * FROM dbo.TRIP WHERE id = 22
-SELECT* FROM dbo.PAYMENT
-SELECT* FROM dbo.TICKET
-SELECT* FROM dbo.USERS
-
-DECLARE @date DATE
-SET @date = '20200518'
-SELECT TOP 1 Destination FROM dbo.TRIP WHERE Date_Trip < '20200518' AND ID_Driver = 'UID00000007' ORDER BY (Date_Trip) DESC
