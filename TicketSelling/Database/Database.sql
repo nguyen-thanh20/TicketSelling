@@ -187,6 +187,8 @@ BEGIN
 	SELECT* FROM dbo.ACCOUNT WHERE Username = @userName COLLATE SQL_Latin1_General_CP1_CS_AS AND Pass_Account = @passWord COLLATE SQL_Latin1_General_CP1_CS_AS
 END
 
+GO
+				 
 CREATE PROC USP_showName
 @userName NVARCHAR (100)
 AS
@@ -195,6 +197,8 @@ BEGIN
 	SELECT U.Last_Name, U.First_Name FROM dbo.USERS AS U, dbo.ACCOUNT AS A WHERE A.Username = @userName AND A.ID_User = U.ID_User;
 END
 
+GO                                 
+                                 
 CREATE PROC USP_getName
 @idUser NVARCHAR (100)
 AS
@@ -202,7 +206,8 @@ BEGIN
 	SELECT First_Name, Last_Name FROM dbo.USERS WHERE ID_User = @idUser
 END
 
-
+GO 
+                                 
 CREATE PROC USP_getRole
 @userName NVARCHAR (100)
 AS
@@ -211,6 +216,8 @@ BEGIN
 	SELECT U.Role_User FROM dbo.USERS AS U, dbo.ACCOUNT AS A WHERE A.Username = @userName AND A.ID_User = U.ID_User;
 END
 
+GO 
+                                 
 CREATE PROC USP_getID
 @userName NVARCHAR (100)
 AS
@@ -219,6 +226,8 @@ BEGIN
 	SELECT U.ID_User FROM dbo.USERS AS U, dbo.ACCOUNT AS A WHERE A.Username = @userName AND A.ID_User = U.ID_User;
 END
 
+GO 
+                           
 CREATE PROC USP_loadTrip
 @source NVARCHAR(100), @destination NVARCHAR (100), @date DATE
 AS
@@ -226,6 +235,8 @@ BEGIN
 	SELECT* FROM trip WHERE Source = @source AND Destination = @destination AND Date_Trip = @date
 END
 
+GO 
+                           
 CREATE PROC USP_getSeat
 @idTrip NVARCHAR (100)
 AS
@@ -234,6 +245,8 @@ BEGIN
 	SELECT Total_Seat FROM dbo.TRIP WHERE ID_Trip = @idTrip
 END
 
+GO 
+                           
 CREATE PROC USP_getListSeat
 @idTrip NVARCHAR (100)
 AS
@@ -245,6 +258,8 @@ BEGIN
 
 END
 
+GO 
+                           
 CREATE PROC USP_loadTripUser
 @idTrip NVARCHAR (100)
 AS
@@ -252,6 +267,8 @@ BEGIN
 	SELECT* FROM dbo.TRIP WHERE ID_Trip = @idTrip
 END
 
+GO 
+                           
 CREATE PROC USP_InsertTicket
 @seatNumber INT, @totalPrice FLOAT, @idUser NVARCHAR(100), @idTrip NVARCHAR(100)
 AS
@@ -269,6 +286,8 @@ VALUES  ( @seatNumber , -- Seat_Number - int
         )
 END
 
+GO 
+                           
 CREATE PROC USP_InsertPayment
 @Name NVARCHAR (100), @Bank NVARCHAR (100), @CardNum INT,
 @CardType NVARCHAR (100), @idTicket NVARCHAR (100)
@@ -291,6 +310,8 @@ VALUES  ( @Name , -- Name - varchar(50)
         )
 END
 
+GO 
+                           
 CREATE PROC USP_maxIdTicket
 AS
 BEGIN
@@ -299,6 +320,8 @@ SET @maxID = (SELECT max (id) FROM dbo.TICKET)
 SELECT ID_Ticket FROM dbo.TICKET WHERE id = @maxID
 END
 
+GO 
+                           
 CREATE PROC USP_updateSeat
 @idTrip NVARCHAR (100)
 AS
@@ -306,6 +329,8 @@ BEGIN
 	UPDATE dbo.TRIP SET Available_Seat = (Available_Seat - 1) WHERE ID_Trip = @idTrip
 END
 
+GO 
+                           
 CREATE PROC USP_LoadTicket
 @idTicket NVARCHAR (100)
 AS
